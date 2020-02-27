@@ -21,7 +21,7 @@ close all
 
 % program data
 fig_kin_4bar = 1;        % draw figures of kinematic analysis if 1
-fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
+%fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
 
 % kinematic parameters (link lengths)
 r11 = 22;
@@ -88,7 +88,8 @@ t = [t_begin:Ts:t_end]';       % time vector
 % ddphi2=-omega^2*A*sin(omega*t);
 
 % calculation of the kinematics (see kin_4bar.m)
-[phi3,phi4,dphi3,dphi4,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar);
+
+[phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar);
 
  
 
@@ -110,6 +111,6 @@ t = [t_begin:Ts:t_end]';       % time vector
 % movie(Movie)
 
 function ang = convert_radial(angle) 
-    ang = (2*pi/360) * angle
+    ang = ((2*pi)/360) * angle;
 end
 

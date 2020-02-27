@@ -11,7 +11,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [phi3,phi4,dphi3,dphi4,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar)
+function [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
 % copy the vector each time we add an element.
@@ -24,10 +24,10 @@ phi8 = zeros(size(t));
 phi9 = zeros(size(t));
 phi10 = zeros(size(t));
 
-% dphi3 = zeros(size(t));
-% dphi4 = zeros(size(t));
-% ddphi3 = zeros(size(t));
-% ddphi4 = zeros(size(t));
+dphi3 = zeros(size(t));
+dphi4 = zeros(size(t));
+ddphi3 = zeros(size(t));
+ddphi4 = zeros(size(t));
 
 % fsolve options (help fsolve, help optimset)
 optim_options = optimset('Display','off');
@@ -97,7 +97,7 @@ for k=1:t_size
 %     phi4_init = phi4(k)+Ts*dphi4(k);
 %     
 %     
-% end % loop over positions
+end % loop over positions
 % 
 % 
 % 
@@ -204,7 +204,7 @@ for k=1:t_size
 %     plot(t,ddphi4)
 %     ylabel('dd\phi_4 [rad/s^2]')
 %     xlabel('t [s]')
-end
+%end
 
 
 
