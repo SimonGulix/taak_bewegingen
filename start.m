@@ -81,9 +81,9 @@ Ts = 0.05;                     % time step of simulation
 t = [t_begin:Ts:t_end]';       % time vector
 
 % initialization of driver
-% omega = 0.5;
-% A = 1;
-% phi2=1+A*sin(omega*t);
+ omega = 0.5;
+ A = 1;
+ phi2=1+A*sin(omega*t);
 % dphi2=omega*A*cos(omega*t);
 % ddphi2=-omega^2*A*sin(omega*t);
 
