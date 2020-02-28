@@ -104,6 +104,7 @@ for i=1:size(x)
     y(i)=(x(i)/(2*pi))*360;
 end
 disp(y);%% oplossing tonen in graden
+disp(phi3);%% toont het verloop van phi 3 voor phi tussen 0 en omega*t_end
 % 
 % 
 % 
