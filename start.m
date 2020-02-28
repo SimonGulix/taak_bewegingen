@@ -66,14 +66,14 @@ phi11 = 0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % position analysis
-phi3_init = convert_radial(225);    % initial condition for first step of position analysis with fsolve (phi3 and phi4)
-phi4_init = convert_radial(255);  % VERY IMPORTANT because it determines which branch of the mechanism you're in
-phi5_init = convert_radial(30);
-phi6_init = convert_radial(140);
+phi3_init = convert_radial(180+45);    % initial condition for first step of position analysis with fsolve (phi3 and phi4)
+phi4_init = convert_radial(180+75);  % VERY IMPORTANT because it determines which branch of the mechanism you're in
+phi5_init = convert_radial(20);
+phi6_init = convert_radial(30);
 phi7_init = convert_radial(280);
-phi8_init = convert_radial(260);
+phi8_init = convert_radial(180+75);
 phi9_init = convert_radial(20);
-phi10_init = convert_radial(150);
+phi10_init = convert_radial(30);
 
 t_begin = 0;                   % start time of simulation
 t_end = 10;                    % end time of simulation
