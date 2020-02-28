@@ -96,14 +96,8 @@ for k=1:t_size
 %     phi3_init = phi3(k)+Ts*dphi3(k);
 %     phi4_init = phi4(k)+Ts*dphi4(k);
 %     
-%   
-
+%     
 end % loop over positions
-disp(x);
-for i=1:size(x)
-    y(i)=(x(i)/(2*pi))*360;
-end
-disp(y);%% oplossing tonen in graden
 % 
 % 
 % 
