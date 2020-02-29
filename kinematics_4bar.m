@@ -11,7 +11,7 @@
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar)
+function [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi3,ddphi4] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2,dphi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar)
 
 % allocation of the result vectors (this results in better performance because we don't have to reallocate and
 % copy the vector each time we add an element.
@@ -26,6 +26,13 @@ phi10 = zeros(size(t));
 
 dphi3 = zeros(size(t));
 dphi4 = zeros(size(t));
+dphi5 = zeros(size(t));
+dphi6 = zeros(size(t));
+dphi7 = zeros(size(t));
+dphi8 = zeros(size(t));
+dphi9 = zeros(size(t));
+dphi10 = zeros(size(t));
+
 ddphi3 = zeros(size(t));
 ddphi4 = zeros(size(t));
 
@@ -71,12 +78,34 @@ for k=1:t_size
 %          r3*cos(phi3(k)), -r4*cos(phi4(k))];
 %     B = [ r2*sin(phi2(k))*dphi2(k);
 %          -r2*cos(phi2(k))*dphi2(k)];
-%      
-%     x = A\B;
-%     
-%     % save results
-%     dphi3(k) = x(1);
-%     dphi4(k) = x(2);
+       A = [-r3*sin(phi3(k)),-r4*sin(phi4(k)),-r5*sin(phi5(k)),0,0,r8*sin(phi8(k)),-(r9a+r9b)*sin(phi9(k)),0;
+           r3*cos(phi3(k)),r4*cos(phi4(k)),r5*cos(phi5(k)),0,0,-r8*cos(phi8(k)),(r9a+r9b)*cos(phi9(k)),0;
+           r3*sin(phi3(k)),0,0,-r6*sin(phi6(k)),-r7*sin(phi7(k)),-r8*sin(phi8(k)),0,-(r10a+r10b)*sin(phi10(k));
+           -r3*cos(phi3(k)),0,0,r6*cos(phi6(k)),r7*cos(phi7(k)),r8*cos(phi8(k)),0,(r10a+r10b)*cos(phi10(k));
+           -r3*sin(phi3(k)),0,0,0,0,0,0,r10a*sin(phi10(k));
+           r3*cos(phi3(k)),0,0,0,0,0,0,-r10a*cos(phi10(k));
+           0,0,0,0,0,-r8*sin(phi8(k)),r9a*sin(phi9(k)),0;
+           0,0,0,0,0,r8*cos(phi8(k)),-r9a*cos(phi9(k)),0;];
+       B= [0;
+           0;
+           0;
+           0;
+           -r2*sin(phi2(k))*dphi2(k);
+           r2*cos(phi2(k))*dphi2(k);
+           -r2*sin(phi2(k))*dphi2(k);
+           r2*cos(phi2(k))*dphi2(k);];
+       
+     x = A\B;
+     
+     % save results
+     dphi3(k) = x(1);
+     dphi4(k) = x(2);
+     dphi5(k) = x(3);
+     dphi6(k) = x(4);
+     dphi7(k) = x(5);
+     dphi8(k) = x(6);
+     dphi9(k) = x(7);
+     dphi10(k) = x(8);
     
     
     % *** acceleration analysis ***
@@ -99,12 +128,12 @@ for k=1:t_size
 %   
 
 end % loop over positions
-disp(x);
-for i=1:size(x)
-    y(i)=(x(i)/(2*pi))*360;
-end
-disp(y);%% oplossing tonen in graden
-disp(phi3);%% toont het verloop van phi 3 voor phi tussen 0 en omega*t_end
+
+
+%disp(phi3);%% toont het verloop van phi 3 voor phi2 tussen 0 en omega*t_end
+
+
+
 % 
 % 
 % 
