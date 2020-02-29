@@ -120,23 +120,40 @@ for k=1:t_size
 %          r3*cos(phi3(k)), -r4*cos(phi4(k))];
 %     B = [r2*cos(phi2(k))*dphi2(k)^2+r2*sin(phi2(k))*ddphi2(k)+r3*cos(phi3(k))*dphi3(k)^2-r4*cos(phi4(k))*dphi4(k)^2;
 %          r2*sin(phi2(k))*dphi2(k)^2-r2*cos(phi2(k))*ddphi2(k)+r3*sin(phi3(k))*dphi3(k)^2-r4*sin(phi4(k))*dphi4(k)^2];
-     A = [-r3*sin(phi3(k))  , -r4*sin(phi4(k))  , -r5*cos(phi5(k))  , 0                 , 0                 , r8*sin(phi8(k))   , -(r9a+r9b)*sin(phi9(k))   , 0;
-          r3*cos(phi3(k))   , r4*cos(phi4(k))   , r5*cos(phi5(k))   , 0                 , 0                 , -r8*cos(phi8(k))  , (r9a + r9b)*cos(phi9(k))  , 0;
-          r3*sin(phi3(k))   , 0                 , 0                 , -r6*sin(phi6(k))  , -r7*sin(phi7(k))  , -r8*sin(phi8(k))  , 0                         , -(r10a+r10b)*sin(phi10(k));
-          -r3*cos(phi3(k))  , 0                 , 0                 , r6*cos(phi6(k))   , r7*cos(phi7(k))   , r8*cos(phi8(k))   , 0                         , (r10a+r10b)*cos(phi10(k));
-          -r3*sin(phi3(k))  , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , r10a*sin(phi10(k));
-          r3*cos(phi3(k))   , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , -r10a*cos(phi10(k));
-          0                 , 0                 , 0                 , 0                 , 0                 , -r8*sin(phi8(k))  , r9a*sin(phi9(k))          ,0;
-          0                 , 0                 , 0                 , 0                 , 0                 , r8*cos(phi8(k))   , -r9a*sin(phi9(k))         , 0;];
+A=[-r3*sin(phi3(k)),-r4*sin(phi4(k)),-r5*cos(phi5(k)),0,0,r8*sin(phi8(k)),-(r9a+r9b)*sin(phi9(k)),0;
+r3*cos(phi3(k)),r4*cos(phi4(k)),r5*cos(phi5(k)),0,0,-r8*cos(phi8(k)),(r9a+r9b)*cos(phi9(k)),0;
+r3*sin(phi3(k)),0,0,-r6*sin(phi6(k)),-r7*sin(phi7(k)),-r8*sin(phi8(k)),0,-(r10a+r10b)*sin(phi10(k));
+-r3*cos(phi3(k)),0,0,r6*cos(phi6(k)),r7*cos(phi7(k)),r8*cos(phi8(k)),0,(r10a+r10b)*cos(phi10(k));
+-r3*sin(phi3(k)),0,0,0,0,0,0,r10a*sin(phi10(k));
+r3*cos(phi3(k)),0,0,0,0,0,0,-r10a*cos(phi10(k));
+0,0,0,0,0,-r8*sin(phi8(k)),r9a*sin(phi9(k)),0;
+0,0,0,0,0,r8*cos(phi8(k)),-r9a*sin(phi9(k)),0;];
+
+B=[r3*cos(phi3(k))*dphi3(k)^2+r4*cos(phi4(k))*dphi4(k)^2+r5*cos(phi5(k))*dphi5(k)^2-r8*cos(phi8(k))*dphi8(k)^2+(r9a+r9b)*cos(phi9(k))*dphi9(k)^2;
+r3*sin(phi3(k))*dphi3(k)^2+r4*sin(phi4(k))*dphi4(k)^2+r5*sin(phi5(k))*dphi5(k)^2-r8*sin(phi8(k))*dphi8(k)^2+(r9a+r9b)*sin(phi9(k))*dphi9(k)^2;
+-r3*cos(phi3(k))*dphi3(k)^2+r6*cos(phi6(k))*dphi6(k)^2+r7*cos(phi7(k))*dphi7(k)^2+r8*cos(phi8(k))*dphi8(k)^2+(r10a+r10b)*cos(phi10(k))*dphi10(k)^2;
+-r3*sin(phi3(k))*dphi3(k)^2+r6*sin(phi6(k))*dphi6(k)^2+r7*sin(phi7(k))*dphi7(k)^2+r8*sin(phi8(k))*dphi8(k)^2+(r10a+r10b)*sin(phi10(k))*dphi10(k)^2;
+r3*cos(phi3(k))*dphi3(k)^2-r10a*cos(phi10(k))*dphi10(k)^2-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2;
+r3*sin(phi3(k))*dphi3(k)^2-r10a*sin(phi10(k))*dphi10(k)^2+r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2;
+r8*cos(phi8(k))*dphi8(k)^2-r9a*cos(phi9(k))*dphi9(k)^2-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2;
+r8*sin(phi8(k))*dphi8(k)^2-r9a*sin(phi9(k))*dphi9(k)^2+r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2;];
+%      A = [-r3*sin(phi3(k))  , -r4*sin(phi4(k))  , -r5*cos(phi5(k))  , 0                 , 0                 , r8*sin(phi8(k))   , -(r9a+r9b)*sin(phi9(k))   , 0;
+%           r3*cos(phi3(k))   , r4*cos(phi4(k))   , r5*cos(phi5(k))   , 0                 , 0                 , -r8*cos(phi8(k))  , (r9a + r9b)*cos(phi9(k))  , 0;
+%           r3*sin(phi3(k))   , 0                 , 0                 , -r6*sin(phi6(k))  , -r7*sin(phi7(k))  , -r8*sin(phi8(k))  , 0                         , -(r10a+r10b)*sin(phi10(k));
+%           -r3*cos(phi3(k))  , 0                 , 0                 , r6*cos(phi6(k))   , r7*cos(phi7(k))   , r8*cos(phi8(k))   , 0                         , (r10a+r10b)*cos(phi10(k));
+%           -r3*sin(phi3(k))  , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , r10a*sin(phi10(k));
+%           r3*cos(phi3(k))   , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , -r10a*cos(phi10(k));
+%           0                 , 0                 , 0                 , 0                 , 0                 , -r8*sin(phi8(k))  , r9a*sin(phi9(k))          ,0;
+%           0                 , 0                 , 0                 , 0                 , 0                 , r8*cos(phi8(k))   , -r9a*sin(phi9(k))         , 0;];
      
-     B = [r3*cos(phi3(k))*dphi3(k)^2 + r4*cos(phi4(k))*dphi4(k)^2 + r5*cos(phi5(k))*dphi5(k)^2 -r8*cos(phi8(k))*dphi8(k)^2 + (r9a+r9b)*cos(phi9(k))*dphi9(k)^2;
-         r3*sin(phi3(k))*dphi3(k)^2 +r4*sin(phi4(k))*dphi4(k)^2 + r5*sin(phi5(k))*dphi5(k)^2 - r8*sin(phi8(k))*dphi8(k)^2 + (r9a+r9b)*sin(phi9(k))*dphi9(k)^2;
-         -r3*cos(phi3(k))*dphi3(k)^2 + r6*cos(phi6(k))*dphi6(k)^2 +r7*cos(phi7(k))*dphi7(k)^2 +r8*cos(phi8(k))*dphi8(k)^2 + (r10a+r10b)*cos(phi10(k))*dphi10(k)^2;
-         -r3*sin(phi3(k))*dphi3(k)^2 + r6*sin(phi6(k))*dphi6(k)^2 +r7*sin(phi7(k))*dphi7(k)^2 +r8*sin(phi8(k))*dphi8(k)^2 + (r10a+r10b)*sin(phi10(k))*dphi10(k)^2;
-         r3*cos(phi3(k))*dphi3(k)^2 - r10a*cos(phi10(k))*dphi10(k)^2 - r2*sin(phi2(k))*ddphi2(k) -r2*cos(phi2(k))*dphi2(k)^2;
-         r3*sin(phi3(k))*dphi3(k)^2 - r10a*sin(phi10(k))*dphi10(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;
-         r8*cos(phi8(k))*dphi8(k)^2 - r9a*cos(phi9(k))*dphi9(k)^2 - r2*sin(phi2(k))*ddphi2(k) -r2*cos(phi2(k))*dphi2(k)^2;
-         r8*sin(phi8(k))*dphi8(k)^2 - r9a*sin(phi9(k))*dphi9(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;];
+%      B = [r3*cos(phi3(k))*dphi3(k)^2 + r4*cos(phi4(k))*dphi4(k)^2 + r5*cos(phi5(k))*dphi5(k)^2 -r8*cos(phi8(k))*dphi8(k)^2 + (r9a+r9b)*cos(phi9(k))*dphi9(k)^2;
+%          r3*sin(phi3(k))*dphi3(k)^2 +r4*sin(phi4(k))*dphi4(k)^2 + r5*sin(phi5(k))*dphi5(k)^2 - r8*sin(phi8(k))*dphi8(k)^2 + (r9a+r9b)*sin(phi9(k))*dphi9(k)^2;
+%          -r3*cos(phi3(k))*dphi3(k)^2 + r6*cos(phi6(k))*dphi6(k)^2 +r7*cos(phi7(k))*dphi7(k)^2 +r8*cos(phi8(k))*dphi8(k)^2 + (r10a+r10b)*cos(phi10(k))*dphi10(k)^2;
+%          -r3*sin(phi3(k))*dphi3(k)^2 + r6*sin(phi6(k))*dphi6(k)^2 +r7*sin(phi7(k))*dphi7(k)^2 +r8*sin(phi8(k))*dphi8(k)^2 + (r10a+r10b)*sin(phi10(k))*dphi10(k)^2;
+%          r3*cos(phi3(k))*dphi3(k)^2 - r10a*cos(phi10(k))*dphi10(k)^2 - r2*sin(phi2(k))*ddphi2(k) -r2*cos(phi2(k))*dphi2(k)^2;
+%          r3*sin(phi3(k))*dphi3(k)^2 - r10a*sin(phi10(k))*dphi10(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;
+%          r8*cos(phi8(k))*dphi8(k)^2 - r9a*cos(phi9(k))*dphi9(k)^2 - r2*sin(phi2(k))*ddphi2(k) -r2*cos(phi2(k))*dphi2(k)^2;
+%          r8*sin(phi8(k))*dphi8(k)^2 - r9a*sin(phi9(k))*dphi9(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;];
     x = A\B;
     % save results
     ddphi3(k) = x(1);
@@ -150,6 +167,12 @@ for k=1:t_size
     % *** calculate initial values for next iteration step ***
     phi3_init = phi3(k)+Ts*dphi3(k);
     phi4_init = phi4(k)+Ts*dphi4(k);
+    phi5_init = phi5(k)+Ts*dphi5(k);
+    phi6_init = phi6(k)+Ts*dphi6(k);
+    phi7_init = phi7(k)+Ts*dphi7(k);
+    phi8_init = phi8(k)+Ts*dphi8(k);
+    phi9_init = phi9(k)+Ts*dphi9(k);
+    phi10_init = phi10(k)+Ts*dphi10(k);
 
 end % loop over positions
 
@@ -161,110 +184,127 @@ end % loop over positions
 
 
 
-% % *** create movie ***
-% 
-% % point P = fixed
-% P = 0;
-% % point S = fixed
-% S = r1*exp(j*phi1);
-% % define which positions we want as frames in our movie
-% frames = 40;    % number of frames in movie
-% delta = floor(t_size/frames); % time between frames
-% index_vec = [1:delta:t_size]';
-% 
-% % Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
-% % This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
-% % axes equal and saving the axes into "movie_axes", so that "movie_axes" can be used for further
-% % plots.
-% x_left = -1.5*r2;
-% y_bottom = -1.5*max(r2,r4);
-% x_right = r1+1.5*r4;
-% y_top = 1.5*max(r2,r4);
-% 
-% figure(10)
-% hold on
-% plot([x_left, x_right], [y_bottom, y_top]);
-% axis equal;
-% movie_axes = axis;   %save current axes into movie_axes
-% 
-% % draw and save movie frame
-% for m=1:length(index_vec)
-%     index = index_vec(m);
-%     Q = P + r2 * exp(j*phi2(index));
-%     R1 = Q + r3 * exp(j*phi3(index));
-%     R2 = S + r4 * exp(j*phi4(index));
-%     
-%     loop1 = [P Q R1 R2 S];
-%     
-%     figure(10)
-%     clf
-%     hold on
-%     plot(real(loop1),imag(loop1),'-o')
-%     
-%     axis(movie_axes);     % set axes as in movie_axes
-%     Movie(m) = getframe;  % save frame to a variable Film
-% end
-% 
-% % save movie
-% save fourbar_movie Movie
-% close(10)
+% *** create movie ***
 
-% 
-% % *** plot figures ***
-% 
-% if fig_kin_4bar
-%     
-%     %plot assembly at a certain timestep 
-%     index = 1; %select 1st timestep
+% point P = fixed
+A = 0;
+% point S = fixed
+C = r12*exp(j*phi12);
+% define which positions we want as frames in our movie
+frames = 40;    % number of frames in movie
+delta = floor(t_size/frames); % time between frames
+index_vec = [1:delta:t_size]';
+
+% Create a window large enough for the whole mechanisme in all positions, to prevent scrolling.
+% This is done by plotting a diagonal from (x_left, y_bottom) to (x_right, y_top), setting the
+% axes equal and saving the axes into "movie_axes", so that "movie_axes" can be used for further
+% plots.
+x_left = -2*r2;
+y_bottom = -2*max(r2,r4);
+x_right = r11+2*r4;
+y_top = 2*max(r2,r4);
+
+figure(10)
+hold on
+plot([x_left, x_right], [y_bottom, y_top]);
+axis equal;
+movie_axes = axis;   %save current axes into movie_axes
+
+% draw and save movie frame
+for m=1:length(index_vec)
+    index = index_vec(m);
+    F = C + r2*exp(j*phi2(index));
+    E1 = A + r3*exp(j*phi3(index));
+    E2 = F + r10a * exp(j*phi10(index));
+    
+    loop1 = [A E1 E2 F C];
+    
+    I = E1 + r4*exp(j*phi4(index));
+    G = I + r5*exp(j*phi5(index));
+    loop2 = [E1 I G F ];
+    
+    B = A + r11 * exp(j*0);
+    D = B + r8*exp(j*phi8(index));
+    loop3 = [B D F C ];
+    
+    J = D + r7*exp(j*phi7(index));
+    H = J + r6*exp(j*phi6(index));
+    loop4 = [D J H F];
+    
+    figure(10)
+    clf
+    hold on
+    plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),real(loop4),imag(loop4),'-o')
+    
+    axis(movie_axes);     % set axes as in movie_axes
+    Movie(m) = getframe;  % save frame to a variable Film
+end
+
+% save movie
+save fourbar_movie Movie
+close(10)
+
+
+% *** plot figures ***
+
+if fig_kin_4bar
+    
+    %plot assembly at a certain timestep 
+    index = 1; %select 1st timestep
+    A = 0;
+    C = r12*exp(j*phi12(index));
+    F = C + r2*exp(j*phi2(index));
+    E = F + r10a*exp(j*phi10(index));
+    
 %     P = 0;
 %     S = r1*exp(j*phi1);
 %     Q = P + r2 * exp(j*phi2(index));
 %     R = Q + r3 * exp(j*phi3(index));
-%     
-%     figure
-%     assembly=[P, Q, R, S];
-%     plot(real(assembly),imag(assembly),'ro-')
-%     xlabel('[m]')
-%     ylabel('[m]')
-%     title('assembly')
-%     axis equal
-%     
-%     figure
-%     subplot(311)
-%     plot(t,phi2)
-%     ylabel('\phi_2 [rad]')
-%     subplot(312)
-%     plot(t,phi3)
-%     ylabel('\phi_3 [rad]')
-%     subplot(313)
-%     plot(t,phi4)
-%     ylabel('\phi_4 [rad]')
-%     xlabel('t [s]')
-%     
-%     figure
-%     subplot(311)
-%     plot(t,dphi2)
-%     ylabel('d\phi_2 [rad/s]')
-%     subplot(312)
-%     plot(t,dphi3)
-%     ylabel('d\phi_3 [rad/s]')
-%     subplot(313)
-%     plot(t,dphi4)
-%     ylabel('d\phi_4 [rad/s]')
-%     xlabel('t [s]')
-%     
-%     figure
-%     subplot(311)
-%     plot(t,ddphi2)
-%     ylabel('dd\phi_2 [rad/s^2]')
-%     subplot(312)
-%     plot(t,ddphi3)
-%     ylabel('dd\phi_3 [rad/s^2]')
-%     subplot(313)
-%     plot(t,ddphi4)
-%     ylabel('dd\phi_4 [rad/s^2]')
-%     xlabel('t [s]')
-% end
+    
+    figure
+    assembly=[A, C, F, E];
+    plot(real(assembly),imag(assembly),'ro-')
+    xlabel('[m]')
+    ylabel('[m]')
+    title('assembly')
+    axis equal
+    
+    figure
+    subplot(311)
+    plot(t,phi2)
+    ylabel('\phi_2 [rad]')
+    subplot(312)
+    plot(t,phi3)
+    ylabel('\phi_3 [rad]')
+    subplot(313)
+    plot(t,phi4)
+    ylabel('\phi_4 [rad]')
+    xlabel('t [s]')
+    
+    figure
+    subplot(311)
+    plot(t,dphi2)
+    ylabel('d\phi_2 [rad/s]')
+    subplot(312)
+    plot(t,dphi3)
+    ylabel('d\phi_3 [rad/s]')
+    subplot(313)
+    plot(t,dphi4)
+    ylabel('d\phi_4 [rad/s]')
+    xlabel('t [s]')
+    
+    figure
+    subplot(311)
+    plot(t,ddphi2)
+    ylabel('dd\phi_2 [rad/s^2]')
+    subplot(312)
+    plot(t,ddphi3)
+    ylabel('dd\phi_3 [rad/s^2]')
+    subplot(313)
+    plot(t,ddphi4)
+    ylabel('dd\phi_4 [rad/s^2]')
+    xlabel('t [s]')
+end
 % 
 % 
 % 
