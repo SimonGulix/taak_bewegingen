@@ -231,10 +231,14 @@ for m=1:length(index_vec)
     H = J + r6*exp(j*phi6(index));
     loop4 = [D J H F];
     
+    C2 = B + r13*exp(j*phi13);
+    loop5 = [A C C2 B];
+    
+    
     figure(10)
     clf
     hold on
-    plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),real(loop4),imag(loop4),'-o')
+    plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),real(loop4),imag(loop4),real(loop5),imag(loop5),'-o')
     
     axis(movie_axes);     % set axes as in movie_axes
     Movie(m) = getframe;  % save frame to a variable Film
