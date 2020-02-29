@@ -40,7 +40,6 @@ r10a = 14;
 r10b = 6;
 
 %phi2= 0;
-phi2= convert_radial(225);
 phi12 = convert_radial(323.9726266);
 phi13 = convert_radial(216.0273734);
 phi11 = 0;
@@ -77,19 +76,19 @@ phi9_init = convert_radial(35);
 phi10_init = convert_radial(150);
 
 t_begin = 0;                   % start time of simulation
-t_end = 10;                    % end time of simulation
+t_end = 2*pi;                    % end time of simulation
 Ts = 0.05;                     % time step of simulation
 t = [t_begin:Ts:t_end]';       % time vector
-
+disp("t: " + t);
 % initialization of driver
 omega = 1;
 A = 1;
-phi2=3*pi/2 + A*sin(omega*t);
-%phi2= omega*t;
-dphi2=omega*A*cos(omega*t);
-%dphi2=omega;
-ddphi2=omega^2*A*sin(omega*t);
-%ddphi2 = omega;
+%phi2=3*pi/2 + A*sin(omega*t);
+phi2= omega*t;
+%dphi2=omega*A*cos(omega*t);
+dphi2=omega* ones(size(t));
+%ddphi2=omega^2*A*sin(omega*t);
+ddphi2 = zeros(size(t));
 % calculation of the kinematics (see kin_4bar.m)
 
 [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi3,ddphi4, ddphi5, ddphi6, ddphi7, ddphi8, ddphi9, ddphi10] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2,dphi2,ddphi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar);
@@ -97,7 +96,7 @@ ddphi2=omega^2*A*sin(omega*t);
  disp("Done Kinematics");
  
  VarNames = {'phi2', 'phi3', 'phi4', 'phi5', 'phi6', 'phi7', 'phi8', 'phi9', 'phi10'};
-T = table(phi2, phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi10, 'VariableNames',VarNames)
+T = table(convert_to_degree(phi2), phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi10, 'VariableNames',VarNames)
  disp(T);
  
 
@@ -113,12 +112,16 @@ T = table(phi2, phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi10, 'VariableNames'
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 3. Movie
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+% 
 % figure
-% load fourbar_movie Movie
-% movie(Movie)
+%  load fourbar_movie Movie
+%  movie(Movie)
 
 function ang = convert_radial(angle) 
     ang = ((2*pi)/360) * angle;
+end
+
+function ang = convert_to_degree(angle) 
+    ang = (360/(2*pi))*angle;
 end
 
