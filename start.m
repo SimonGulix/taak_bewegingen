@@ -20,7 +20,8 @@ close all
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % program data
-fig_kin_4bar = 0;        % draw figures of kinematic analysis if 1
+fig_kin_4bar = 0;           % draw figures of kinematic analysis if 1
+fig_kin_check = 1;        
 %fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
 
 % kinematic parameters (link lengths)
@@ -39,7 +40,7 @@ r9b = 6;
 r10a = 14;
 r10b = 6;
 
-%phi2= 0;
+
 phi12 = convert_radial(323.9726266);
 phi13 = convert_radial(216.0273734);
 phi11 = 0;
@@ -79,15 +80,12 @@ t_begin = 0;                   % start time of simulation
 t_end = 2*pi;                    % end time of simulation
 Ts = 0.05;                     % time step of simulation
 t = [t_begin:Ts:t_end]';       % time vector
-disp("t: " + t);
+%disp("t: " + t);
 % initialization of driver
-omega = 1;
+omega = 2;
 A = 1;
-%phi2=3*pi/2 + A*sin(omega*t);
 phi2= omega*t;
-%dphi2=omega*A*cos(omega*t);
 dphi2=omega* ones(size(t));
-%ddphi2=omega^2*A*sin(omega*t);
 ddphi2 = zeros(size(t));
 % calculation of the kinematics (see kin_4bar.m)
 
@@ -96,9 +94,12 @@ ddphi2 = zeros(size(t));
  disp("Done Kinematics");
  
  VarNames = {'phi2', 'phi3', 'phi4', 'phi5', 'phi6', 'phi7', 'phi8', 'phi9', 'phi10'};
-T = table(convert_to_degree(phi2), phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi10, 'VariableNames',VarNames)
- disp(T);
+T = table(convert_to_degree(phi2), phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi10, 'VariableNames',VarNames);
+ %disp(T);
  
+ % verify kinematics (see kin_check.m)
+[diffphi3,diffphi4,diffphi5,diffphi6,diffphi7,diffphi8,diffphi9,diffphi10,ddiffphi3,ddiffphi4,ddiffphi5,ddiffphi6,ddiffphi7,ddiffphi8,ddiffphi9,ddiffphi10 ] = ...
+ check_kinematics(phi3,phi4,phi5,phi6,phi7,phi8,phi9,phi10,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi3,ddphi4,ddphi5,ddphi6,ddphi7,ddphi8,ddphi9,ddphi10,Ts, fig_kin_check, t);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 2. Dynamics Calculation
