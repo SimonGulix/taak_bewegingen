@@ -284,6 +284,7 @@ if fig_kin_4bar
     plot(t,phi4)
     ylabel('\phi_4 [rad]')
     xlabel('t [s]')
+    %%andere variabelen moeten hier nog bij 
     
     figure
     subplot(311)
