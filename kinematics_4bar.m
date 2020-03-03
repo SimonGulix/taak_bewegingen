@@ -120,32 +120,37 @@ for k=1:t_size
 %          r3*cos(phi3(k)), -r4*cos(phi4(k))];
 %     B = [r2*cos(phi2(k))*dphi2(k)^2+r2*sin(phi2(k))*ddphi2(k)+r3*cos(phi3(k))*dphi3(k)^2-r4*cos(phi4(k))*dphi4(k)^2;
 %          r2*sin(phi2(k))*dphi2(k)^2-r2*cos(phi2(k))*ddphi2(k)+r3*sin(phi3(k))*dphi3(k)^2-r4*sin(phi4(k))*dphi4(k)^2];
-A=[-r3*sin(phi3(k)),-r4*sin(phi4(k)),-r5*cos(phi5(k)),0,0,r8*sin(phi8(k)),-(r9a+r9b)*sin(phi9(k)),0;
+
+%%AANGEPAST, FOUT OKE NU
+A=[-r3*sin(phi3(k)),-r4*sin(phi4(k)),-r5*sin(phi5(k)),0,0,r8*sin(phi8(k)),-(r9a+r9b)*sin(phi9(k)),0;
 r3*cos(phi3(k)),r4*cos(phi4(k)),r5*cos(phi5(k)),0,0,-r8*cos(phi8(k)),(r9a+r9b)*cos(phi9(k)),0;
 r3*sin(phi3(k)),0,0,-r6*sin(phi6(k)),-r7*sin(phi7(k)),-r8*sin(phi8(k)),0,-(r10a+r10b)*sin(phi10(k));
 -r3*cos(phi3(k)),0,0,r6*cos(phi6(k)),r7*cos(phi7(k)),r8*cos(phi8(k)),0,(r10a+r10b)*cos(phi10(k));
 -r3*sin(phi3(k)),0,0,0,0,0,0,r10a*sin(phi10(k));
 r3*cos(phi3(k)),0,0,0,0,0,0,-r10a*cos(phi10(k));
 0,0,0,0,0,-r8*sin(phi8(k)),r9a*sin(phi9(k)),0;
-0,0,0,0,0,r8*cos(phi8(k)),-r9a*sin(phi9(k)),0;];
+0,0,0,0,0,r8*cos(phi8(k)),-r9a*cos(phi9(k)),0;];
 
 B=[r3*cos(phi3(k))*dphi3(k)^2+r4*cos(phi4(k))*dphi4(k)^2+r5*cos(phi5(k))*dphi5(k)^2-r8*cos(phi8(k))*dphi8(k)^2+(r9a+r9b)*cos(phi9(k))*dphi9(k)^2;
 r3*sin(phi3(k))*dphi3(k)^2+r4*sin(phi4(k))*dphi4(k)^2+r5*sin(phi5(k))*dphi5(k)^2-r8*sin(phi8(k))*dphi8(k)^2+(r9a+r9b)*sin(phi9(k))*dphi9(k)^2;
 -r3*cos(phi3(k))*dphi3(k)^2+r6*cos(phi6(k))*dphi6(k)^2+r7*cos(phi7(k))*dphi7(k)^2+r8*cos(phi8(k))*dphi8(k)^2+(r10a+r10b)*cos(phi10(k))*dphi10(k)^2;
 -r3*sin(phi3(k))*dphi3(k)^2+r6*sin(phi6(k))*dphi6(k)^2+r7*sin(phi7(k))*dphi7(k)^2+r8*sin(phi8(k))*dphi8(k)^2+(r10a+r10b)*sin(phi10(k))*dphi10(k)^2;
-r3*cos(phi3(k))*dphi3(k)^2-r10a*cos(phi10(k))*dphi10(k)^2-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2;
-r3*sin(phi3(k))*dphi3(k)^2-r10a*sin(phi10(k))*dphi10(k)^2+r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2;
-r8*cos(phi8(k))*dphi8(k)^2-r9a*cos(phi9(k))*dphi9(k)^2-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2;
-r8*sin(phi8(k))*dphi8(k)^2-r9a*sin(phi9(k))*dphi9(k)^2+r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2;];
-%      A = [-r3*sin(phi3(k))  , -r4*sin(phi4(k))  , -r5*cos(phi5(k))  , 0                 , 0                 , r8*sin(phi8(k))   , -(r9a+r9b)*sin(phi9(k))   , 0;
+-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2+r3*cos(phi3(k))*dphi3(k)^2-r10a*cos(phi10(k))*dphi10(k)^2;
+r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2+r3*sin(phi3(k))*dphi3(k)^2-r10a*sin(phi10(k))*dphi10(k)^2;
+-r2*sin(phi2(k))*ddphi2(k)-r2*cos(phi2(k))*dphi2(k)^2+r8*cos(phi8(k))*dphi8(k)^2-r9a*cos(phi9(k))*dphi9(k)^2;
++r2*cos(phi2(k))*ddphi2(k)-r2*sin(phi2(k))*dphi2(k)^2+r8*sin(phi8(k))*dphi8(k)^2-r9a*sin(phi9(k))*dphi9(k)^2;];
+
+
+
+%      A = [-r3*sin(phi3(k))  , -r4*sin(phi4(k))  , -r5*sin(phi5(k))  , 0                 , 0                 , r8*sin(phi8(k))   , -(r9a+r9b)*sin(phi9(k))   , 0;
 %           r3*cos(phi3(k))   , r4*cos(phi4(k))   , r5*cos(phi5(k))   , 0                 , 0                 , -r8*cos(phi8(k))  , (r9a + r9b)*cos(phi9(k))  , 0;
 %           r3*sin(phi3(k))   , 0                 , 0                 , -r6*sin(phi6(k))  , -r7*sin(phi7(k))  , -r8*sin(phi8(k))  , 0                         , -(r10a+r10b)*sin(phi10(k));
 %           -r3*cos(phi3(k))  , 0                 , 0                 , r6*cos(phi6(k))   , r7*cos(phi7(k))   , r8*cos(phi8(k))   , 0                         , (r10a+r10b)*cos(phi10(k));
 %           -r3*sin(phi3(k))  , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , r10a*sin(phi10(k));
 %           r3*cos(phi3(k))   , 0                 , 0                 , 0                 , 0                 , 0                 , 0                         , -r10a*cos(phi10(k));
 %           0                 , 0                 , 0                 , 0                 , 0                 , -r8*sin(phi8(k))  , r9a*sin(phi9(k))          ,0;
-%           0                 , 0                 , 0                 , 0                 , 0                 , r8*cos(phi8(k))   , -r9a*sin(phi9(k))         , 0;];
-     
+%           0                 , 0                 , 0                 , 0                 , 0                 , r8*cos(phi8(k))   , -r9a*sin(phi9(k))         ,0;];
+%      
 %      B = [r3*cos(phi3(k))*dphi3(k)^2 + r4*cos(phi4(k))*dphi4(k)^2 + r5*cos(phi5(k))*dphi5(k)^2 -r8*cos(phi8(k))*dphi8(k)^2 + (r9a+r9b)*cos(phi9(k))*dphi9(k)^2;
 %          r3*sin(phi3(k))*dphi3(k)^2 +r4*sin(phi4(k))*dphi4(k)^2 + r5*sin(phi5(k))*dphi5(k)^2 - r8*sin(phi8(k))*dphi8(k)^2 + (r9a+r9b)*sin(phi9(k))*dphi9(k)^2;
 %          -r3*cos(phi3(k))*dphi3(k)^2 + r6*cos(phi6(k))*dphi6(k)^2 +r7*cos(phi7(k))*dphi7(k)^2 +r8*cos(phi8(k))*dphi8(k)^2 + (r10a+r10b)*cos(phi10(k))*dphi10(k)^2;
@@ -154,6 +159,7 @@ r8*sin(phi8(k))*dphi8(k)^2-r9a*sin(phi9(k))*dphi9(k)^2+r2*cos(phi2(k))*ddphi2(k)
 %          r3*sin(phi3(k))*dphi3(k)^2 - r10a*sin(phi10(k))*dphi10(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;
 %          r8*cos(phi8(k))*dphi8(k)^2 - r9a*cos(phi9(k))*dphi9(k)^2 - r2*sin(phi2(k))*ddphi2(k) -r2*cos(phi2(k))*dphi2(k)^2;
 %          r8*sin(phi8(k))*dphi8(k)^2 - r9a*sin(phi9(k))*dphi9(k)^2 +r2*cos(phi2(k))*ddphi2(k) - r2*sin(phi2(k))*dphi2(k)^2;];
+  
     x = A\B;
     % save results
     ddphi3(k) = x(1);
