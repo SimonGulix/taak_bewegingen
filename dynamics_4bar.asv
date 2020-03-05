@@ -124,30 +124,17 @@ acc_7 =acc_D+cross(omega7,cross(omega7,D_cog7_vec))+cross(alpha7,D_cog7_vec);
 acc_J =acc_D+cross(omega7,cross(omega7,DJ_vec))+cross(alpha7,DJ_vec);
 acc_6 =acc_J+cross(omega6,cross(omega6,J_cog6_vec))+cross(alpha6,J_cog6_vec);
 
-acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
-acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
-acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha5,IG_vec);
-acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
+acc_9
 
 
+
+acc_4 =       cross(omega4,cross(omega4,S_cog4_vec))+cross(alpha4,S_cog4_vec);
 acc_2x = acc_2(:,1);
 acc_2y = acc_2(:,2);
 acc_3x = acc_3(:,1);
 acc_3y = acc_3(:,2);
 acc_4x = acc_4(:,1);
 acc_4y = acc_4(:,2);
-acc_5x = acc_5(:,1);
-acc_5y = acc_5(:,2);
-acc_6x = acc_6(:,1);
-acc_6y = acc_6(:,2);
-acc_7x = acc_7(:,1);
-acc_7y = acc_7(:,2);
-acc_8x = acc_8(:,1);
-acc_8y = acc_8(:,2);
-acc_9x = acc_9(:,1);
-acc_9y = acc_9(:,2);
-acc_10x = acc_10(:,1);
-acc_10y = acc_10(:,2);
 
 
 % **********************
@@ -155,49 +142,28 @@ acc_10y = acc_10(:,2);
 % **********************
 
 % allocate matrices for force (F) and moment (M)
-F_A_x = zeros(size(phi2));
-F_A_y = zeros(size(phi2));
-F_I_x = zeros(size(phi2));
-F_I_y = zeros(size(phi2));
-F_G_x = zeros(size(phi2));
-F_G_y = zeros(size(phi2));
-F_C_x = zeros(size(phi2));
-F_C_y = zeros(size(phi2));
-F_B_x = zeros(size(phi2));
-F_B_y = zeros(size(phi2));
-F_J_x = zeros(size(phi2));
-F_J_y = zeros(size(phi2));
-F_H_x = zeros(size(phi2));
-F_H_y = zeros(size(phi2));
-
-F_D9_x = zeros(size(phi2));
-F_D9_y = zeros(size(phi2));
-F_D7_x = zeros(size(phi2));
-F_D7_y = zeros(size(phi2));
-F_D8_x = zeros(size(phi2));
-F_D8_y = zeros(size(phi2));
-
-F_F10_x = zeros(size(phi2));
-F_F10_y = zeros(size(phi2));
-F_F9_x = zeros(size(phi2));
-F_F9_y = zeros(size(phi2));
-F_F2_x = zeros(size(phi2));
-F_F2_y = zeros(size(phi2));
-
-F_E4_x = zeros(size(phi2));
-F_E4_y = zeros(size(phi2));
-F_E3_x = zeros(size(phi2));
-F_E3_y = zeros(size(phi2));
-F_E10_x = zeros(size(phi2));
-F_E10_y = zeros(size(phi2));
-
-M_C = zeros(size(phi2));
+F_P_x = zeros(size(phi2));
+F_P_y = zeros(size(phi2));
+F_Q_x = zeros(size(phi2));
+F_Q_y = zeros(size(phi2));
+F_R_x = zeros(size(phi2));
+F_R_y = zeros(size(phi2));
+F_S_x = zeros(size(phi2));
+F_S_y = zeros(size(phi2));
+M_P = zeros(size(phi2));
 
 % calculate dynamics for each time step
 t_size = size(t,1);    % number of simulation steps
 for k=1:t_size
-  %       
-  A = [ ];
+  A = [ 1           0            1            0            0            0            0           0           0;
+        0           1            0            1            0            0            0           0           0;
+        0           0           -1            0           -1            0            0           0           0;
+        0           0            0           -1            0           -1            0           0           0;
+        0           0            0            0            1            0            1           0           0;
+        0           0            0            0            0            1            0           1           0;
+       -cog2_P_y(k) cog2_P_x(k) -cog2_Q_y(k)  cog2_Q_x(k)  0            0            0           0           1;
+        0           0            cog3_Q_y(k) -cog3_Q_x(k)  cog3_R_y(k) -cog3_R_x(k)  0           0           0;
+        0           0            0            0           -cog4_R_y(k)  cog4_R_x(k) -cog4_S_y(k) cog4_S_x(k) 0];
     
   B = [ m2*acc_2x(k);
         m2*acc_2y(k);
