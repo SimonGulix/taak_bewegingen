@@ -22,7 +22,7 @@ close all
 % program data
 fig_kin_4bar = 0;           % draw figures of kinematic analysis if 1
 fig_kin_check = 0;        
-%fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
+fig_dyn_4bar = 0;        % draw figures of dynamic analysis if 1
 
 % kinematic parameters (link lengths)
 r11 = 22;
@@ -72,7 +72,7 @@ m10 = r10a+r10b;
 % J3 = m3*r3^2/12;
 % J4 = m4*r4^2/12;
 
-J2 = m2*r2^2/12
+J2 = m2*r2^2/12;
 J3 = m3*r3^2/12;
 J4 = m4*r4^2/12;
 J5 = m5*r5^2/12;
@@ -127,8 +127,9 @@ T = table(convert_to_degree(phi2), phi3, phi4, phi5, phi6, phi7, phi8, phi9, phi
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % calculation of the dynamics (see dyn_4bar.m)
-% [F_P_x,F_Q_x,F_R_x,F_S_x,F_P_y,F_Q_y,F_R_y,F_S_y,M_P] = dynamics_4bar(phi2,phi3,phi4,dphi2,dphi3,dphi4,ddphi2,ddphi3,ddphi4,r2,r3,r4, ...
-%   m2,m3,m4,X2,X3,X4,Y2,Y3,Y4,J2,J3,J4,t,fig_dyn_4bar);
+[F_A_x,F_A_y,F_I_x,F_I_y,F_G_x,F_G_y,F_C_x,F_C_y,F_B_x,F_B_y,F_J_x,F_J_y,F_H_x,F_H_y,F_D9_x,F_D9_y,F_D7_x,F_D7_y,F_D8_x,F_D8_y,F_F10_x,F_F10_y,F_F9_x,F_F9_y,F_F2_x,F_F2_y,F_E4_x,F_E4_y,F_E3_x,F_E3_y,F_E10_x,F_E10_y,M_C] = ...
+    dynamics_4bar(phi2,phi3,phi4,phi5,phi6,phi7,phi8,phi9,phi10,dphi2,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi2,ddphi3,ddphi4,ddphi5,ddphi6,ddphi7,ddphi8,ddphi9,ddphi10,r2,r3,r4,r5,r6,r7,r8,r9a,r9b,r10a,r10b, ...
+  m2,m3,m4,m5,m6,m7,m8,m9,m10,J2,J3,J4,J5,J6,J7,J8,J9,J10,t,fig_dyn_4bar);
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
