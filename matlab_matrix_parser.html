@@ -12,34 +12,41 @@
 	var rows = INPUT.split(";");
 	var table = document.getElementById("table");
 	
+	
 	var heads = vars.split(",");
 	var th = table.createTHead().insertRow(0);
+	var c =  th.insertCell(0);
+	c.innerHTML = "NR";
 	for(var i = 0; i < heads.length; i++) {
-		var cell = th.insertCell(i);
+		var cell = th.insertCell(i+1);
 		cell.innerHTML = heads[i];
 	}
 	
-	for(var row = 0; row < rows.length; row++) {
+	for(var row = 0; row < rows.length-1; row++) {
 		// For each row
 		var elems = rows[row].split(","); 
 		var row_obj = table.insertRow(row);
-		
+		var c = row_obj.insertCell(0);
+		c.innerHTML = row+1;
 		for(var e = 0; e < elems.length; e++) {
 			// For each element in this row
-			var cell = row_obj.insertCell(e);			
-			cell.innerHTML = "<input type='text' style='width:100px;' name='"+row+"' value='" + elems[e] +"'>";
+			var cell = row_obj.insertCell(e+1);
+			var end = "";
+			if (e === (elems.length -1)) {
+				end = "end";
+			} 
+			cell.innerHTML = "<input type='text' style='width:100px;' name='"+end+"' value='" + elems[e] +"'>";
 		}
 	}
 	
 	function parse_data() {
 		var inputs = document.getElementById("inp").elements;
 		var output_string = "";
-		var row = "0";
 		
 		for(var i = 0; i < inputs.length; i++) {
 			var data = inputs[i];
 			output_string = output_string + data.value;
-			if(data.name != row) {
+			if(data.name == "end") {
 				output_string = output_string + ";";
 				row = data.name;
 			} else {
