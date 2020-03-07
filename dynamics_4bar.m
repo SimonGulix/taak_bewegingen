@@ -119,7 +119,7 @@ acc_2 =       cross(omega2,cross(omega2,C_cog2_vec))+cross(alpha2,C_cog2_vec);
 acc_3 =       cross(omega3,cross(omega3,A_cog3_vec))+cross(alpha3,A_cog3_vec);
 acc_E =       cross(omega3,cross(omega3,AE_vec))+cross(alpha3,AE_vec);
 acc_4 = acc_E+cross(omega4,cross(omega4,E_cog4_vec))+cross(alpha4,E_cog4_vec);
-acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec    );
+acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec);
 acc_5 = acc_I+cross(omega5,cross(omega5,I_cog5_vec))+cross(alpha5,I_cog5_vec);
 
 acc_8 =      cross(omega8,cross(omega8,B_cog8_vec))+cross(alpha8,B_cog8_vec);
@@ -130,8 +130,26 @@ acc_6 =acc_J+cross(omega6,cross(omega6,J_cog6_vec))+cross(alpha6,J_cog6_vec);
 
 acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
 acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
-acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha5,IG_vec);
+acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha6,JH_vec);
 acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
+
+% acc_2 =       cross(omega2,cross(omega2,C_cog2_vec))+cross(alpha2,C_cog2_vec);
+% acc_3 =       cross(omega3,cross(omega3,A_cog3_vec))+cross(alpha3,A_cog3_vec);
+% acc_E =       cross(omega3,cross(omega3,AE_vec))+cross(alpha3,AE_vec);
+% acc_4 = acc_E+cross(omega4,cross(omega4,E_cog4_vec))+cross(alpha4,E_cog4_vec);
+% acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec);
+% acc_5 = acc_I+cross(omega5,cross(omega5,I_cog5_vec))+cross(alpha5,I_cog5_vec);
+% 
+% acc_8 =      cross(omega8,cross(omega8,B_cog8_vec))+cross(alpha8,B_cog8_vec);
+% acc_D =      cross(omega8,cross(omega8,BD_vec))+cross(alpha8,BD_vec);
+% acc_7 =acc_D+cross(omega7,cross(omega7,D_cog7_vec))+cross(alpha7,D_cog7_vec);
+% acc_J =acc_D+cross(omega7,cross(omega7,DJ_vec))+cross(alpha7,DJ_vec);
+% acc_6 =acc_J+cross(omega6,cross(omega6,J_cog6_vec))+cross(alpha6,J_cog6_vec);
+% 
+% acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
+% acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
+% acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha5,IG_vec);
+% acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
 
 
 acc_2x = acc_2(:,1);
