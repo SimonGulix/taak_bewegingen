@@ -21,8 +21,9 @@ close all
 
 % program data
 fig_kin_4bar = 0;           % draw figures of kinematic analysis if 1
-fig_kin_check = 0;
-fig_dyn_4bar = 0;        % draw figures of dynamic analysis if 1
+fig_kin_check = 0;        
+fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
+>>>>>>> 684749fd9716ee13cf653825bc7068acc2f1d480
 
 % kinematic parameters (link lengths)
 r11 = 22;
@@ -53,24 +54,20 @@ phi11 = 0;
 % Y3 = 0.0102362;
 % Y4 = 0;
 % 
-m11 = r11;
-m12 = r12;
-m13 = r13;
-m2 = r2;
-m3 = r3;
-m4 = r4;
-m5 = r5;
-m6 = r6;
-m7 = r7;
-m8 = r8;
-m9 = r9a+r9b;
-m10 = r10a+r10b;
-% m3 = r3*1.76;
-% m4 = r4*0.54;
-% 
-% J2 = m2*r2^2/12;
-% J3 = m3*r3^2/12;
-% J4 = m4*r4^2/12;
+density=8; %kg/dm^3  && each beam Cross-section of 1dm x 1dm
+m11 = r11*density;
+m12 = r12*density;
+m13 = r13*density;
+m2 = r2*density;
+m3 = r3*density;
+m4 = r4*density;
+m5 = r5*density;
+m6 = r6*density;
+m7 = r7*density;
+m8 = r8*density;
+m9 = (r9a+r9b)*density;
+m10 = (r10a+r10b)*density;
+
 
 J2 = m2*r2^2/12;
 J3 = m3*r3^2/12;

@@ -119,7 +119,7 @@ acc_2 =       cross(omega2,cross(omega2,C_cog2_vec))+cross(alpha2,C_cog2_vec);
 acc_3 =       cross(omega3,cross(omega3,A_cog3_vec))+cross(alpha3,A_cog3_vec);
 acc_E =       cross(omega3,cross(omega3,AE_vec))+cross(alpha3,AE_vec);
 acc_4 = acc_E+cross(omega4,cross(omega4,E_cog4_vec))+cross(alpha4,E_cog4_vec);
-acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec    );
+acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec);
 acc_5 = acc_I+cross(omega5,cross(omega5,I_cog5_vec))+cross(alpha5,I_cog5_vec);
 
 acc_8 =      cross(omega8,cross(omega8,B_cog8_vec))+cross(alpha8,B_cog8_vec);
@@ -130,8 +130,26 @@ acc_6 =acc_J+cross(omega6,cross(omega6,J_cog6_vec))+cross(alpha6,J_cog6_vec);
 
 acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
 acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
-acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha5,IG_vec);
+acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha6,JH_vec);
 acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
+
+% acc_2 =       cross(omega2,cross(omega2,C_cog2_vec))+cross(alpha2,C_cog2_vec);
+% acc_3 =       cross(omega3,cross(omega3,A_cog3_vec))+cross(alpha3,A_cog3_vec);
+% acc_E =       cross(omega3,cross(omega3,AE_vec))+cross(alpha3,AE_vec);
+% acc_4 = acc_E+cross(omega4,cross(omega4,E_cog4_vec))+cross(alpha4,E_cog4_vec);
+% acc_I = acc_E+cross(omega4,cross(omega4,EI_vec))+cross(alpha4,EI_vec);
+% acc_5 = acc_I+cross(omega5,cross(omega5,I_cog5_vec))+cross(alpha5,I_cog5_vec);
+% 
+% acc_8 =      cross(omega8,cross(omega8,B_cog8_vec))+cross(alpha8,B_cog8_vec);
+% acc_D =      cross(omega8,cross(omega8,BD_vec))+cross(alpha8,BD_vec);
+% acc_7 =acc_D+cross(omega7,cross(omega7,D_cog7_vec))+cross(alpha7,D_cog7_vec);
+% acc_J =acc_D+cross(omega7,cross(omega7,DJ_vec))+cross(alpha7,DJ_vec);
+% acc_6 =acc_J+cross(omega6,cross(omega6,J_cog6_vec))+cross(alpha6,J_cog6_vec);
+% 
+% acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
+% acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
+% acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha5,IG_vec);
+% acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
 
 
 acc_2x = acc_2(:,1);
@@ -201,6 +219,42 @@ M_C = zeros(size(phi2));
 t_size = size(t,1);    % number of simulation steps
 for k=1:t_size
      
+
+  A = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,-cog2_C_y(k),cog2_C_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-cog2_F_y(k),cog2_F_x(k),0,0,0,0,0,0,1;
+      1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0;
+      0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0;
+      -cog3_A_y(k),cog3_A_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-cog3_E_y(k),-cog3_E_x(k),0,0,0;
+      0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,-cog8_B_y(k),-cog8_B_x(k),0,0,0,0,0,0,0,0,-cog8_D_y(k),-cog8_D_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,-cog7_J_y(k),cog7_J_x(k),0,0,0,0,-cog7_D_y(k),cog7_D_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0;
+      0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0;
+      0,0,-cog4_I_y(k),cog4_I_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-cog4_E_y(k),cog4_E_x(k),0,0,0,0,0;
+      0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,cog5_I_y(k),-cog5_I_x(k),-cog5_G_y(k),cog5_G_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,cog6_J_y(k),-cog6_J_x(k),-cog6_H_y(k),cog6_H_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,-1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,cog9_G_y(k),-cog9_G_x(k),0,0,0,0,0,0,0,0,-cog9_D_y(k),cog9_D_x(k),0,0,0,0,0,0,-cog9_F_y(k),+cog9_F_x(k),0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,cog10_H_y(k),-cog10_H_x(k),0,0,0,0,0,0,cog10_F_y(k),-cog10_F_x(k),0,0,0,0,0,0,0,0,cog10_E_y(k),-cog10_E_x(k),0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0;
+      0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0;];
+%  
+
 %   A = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0;
 %       0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0;
 %       0,0,0,0,0,0,-cog2_C_y(k),cog2_C_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,cog2_F_y(k),-cog2_F_x(k),0,0,0,0,0,0,1;
@@ -234,8 +288,6 @@ for k=1:t_size
 %       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0;
 %       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0;
 %       0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0;];
-
-A = [0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0;0,0,0,0,0,0,-cog2_C_y(k),cog2_C_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,cog2_F_y(k),-cog2_F_x(k),0,0,0,0,0,0,1;1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0;0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0;-cog3_A_y(k),cog3_A_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,cog3_E_y(k),-cog3_E_x(k),0,0,0;0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,-cog8_B_y(k),-cog8_B_x(k),0,0,0,0,0,0,0,0,cog8_D_y(k),cog8_D_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,cog7_J_y(k),cog7_J_x(k),0,0,0,0,-cog7_D_y(k),-cog7_D_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0;0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0;0,0,cog4_I_y(k),-cog4_I_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,-cog4_E_y(k),cog4_E_x(k),0,0,0,0,0;0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,-cog5_I_y(k),cog5_I_x(k),-cog5_G_y(k),cog5_G_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,-1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,-cog6_J_y(k),-cog6_J_x(k),-cog6_H_y(k),-cog6_H_x(k),0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,-1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,-1,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0;0,0,0,0,-cog9_G_y(k),cog9_G_x(k),0,0,0,0,0,0,0,0,-cog9_D_y(k),cog9_D_x(k),0,0,0,0,0,0,cog9_F_y(k),-cog9_F_x(k),0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0,0;0,0,0,0,0,0,0,0,0,0,0,0,0,-1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,1,0;0,0,0,0,0,0,0,0,0,0,0,0,-cog10_H_y(k),-cog10_H_x(k),0,0,0,0,0,0,cog10_F_y(k),cog10_F_x(k),0,0,0,0,0,0,0,0,-cog10_E_y(k),-cog10_E_x(k),0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0,0;0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,1,0,0,0,0,0,0,0;];
   
   B = [m2*acc_2x(k);
       m2*acc_2y(k);
@@ -323,29 +375,96 @@ if fig_dyn_4bar
     
     figure
     subplot(221)
-    plot(F_P_x,F_P_y),grid
-    xlabel('F_P_x [N]')
-    ylabel('F_P_y [N]')
+    plot(F_A_x,F_A_y),grid
+    xlabel('F_A_x [N]')
+    ylabel('F_A_y [N]')
     axis tight
     subplot(222)
-    plot(F_Q_x,F_Q_y),grid
-    xlabel('F_Q_x [N]')
-    ylabel('F_Q_y [N]')
+    plot(F_I_x,F_I_y),grid
+    xlabel('F_I_x [N]')
+    ylabel('F_I_y [N]')
     axis tight
     subplot(223)
-    plot(F_R_x,F_R_y),grid
-    xlabel('F_R_x [N]')
-    ylabel('F_R_y [N]')
+    plot(F_G_x,F_G_y),grid
+    xlabel('F_G_x [N]')
+    ylabel('F_G_y [N]')
     axis tight
     subplot(224)
-    plot(F_S_x,F_S_y),grid
-    xlabel('F_S_x [N]')
-    ylabel('F_S_y [N]')
+    plot(F_C_x,F_C_y),grid
+    xlabel('F_C_x [N]')
+    ylabel('F_C_y [N]')
+    axis tight
+    
+  
+    figure
+    subplot(221)
+    plot(F_B_x,F_B_y),grid
+    xlabel('F_B_x [N]')
+    ylabel('F_B_y [N]')
+    axis tight
+    subplot(222)
+    plot(F_J_x,F_J_y),grid
+    xlabel('F_J_x [N]')
+    ylabel('F_J_y [N]')
+    axis tight
+    subplot(223)
+    plot(F_H_x,F_H_y),grid
+    xlabel('F_H_x [N]')
+    ylabel('F_H_y [N]')
+    axis tight
+    subplot(224)
+    plot(F_D9_x,F_D9_y),grid
+    xlabel('F_D9_x [N]')
+    ylabel('F_D9_y [N]')
     axis tight
     
     figure
-    plot(t,M_P)
-    ylabel('M_P [N-m]')
+    subplot(221)
+    plot(F_D7_x,F_D7_y),grid
+    xlabel('F_D7_x [N]')
+    ylabel('F_D7_y [N]')
+    axis tight
+    subplot(222)
+    plot(F_D8_x,F_D8_y),grid
+    xlabel('F_D8_x [N]')
+    ylabel('F_D8_y [N]')
+    axis tight
+    subplot(223)
+    plot(F_F10_x,F_F10_y),grid
+    xlabel('F_F10_x [N]')
+    ylabel('F_F10_y [N]')
+    axis tight
+    subplot(224)
+    plot(F_F9_x,F_F9_y),grid
+    xlabel('F_F9_x [N]')
+    ylabel('F_F9_y [N]')
+    axis tight
+     
+    figure
+    subplot(221)
+    plot(F_F2_x,F_F2_y),grid
+    xlabel('F_F2_x [N]')
+    ylabel('F_F2_y [N]')
+    axis tight
+    subplot(222)
+    plot(F_E4_x,F_E4_y),grid
+    xlabel('F_E4_x [N]')
+    ylabel('F_E4_y [N]')
+    axis tight
+    subplot(223)
+    plot(F_E3_x,F_E3_y),grid
+    xlabel('F_E3_x [N]')
+    ylabel('F_E3_y [N]')
+    axis tight
+    subplot(224)
+    plot(F_E10_x,F_E10_y),grid
+    xlabel('F_E10_x [N]')
+    ylabel('F_E10_y [N]')
+    axis tight
+    
+    figure
+    plot(t,M_C)
+    ylabel('M_C [N-m]')
     xlabel('t [s]')
     
 end
