@@ -49,10 +49,13 @@ optim_options = optimset('Display','off');
 Ts = t(2) - t(1);      % timestep
 t_size = size(t,1);    % number of simulation steps
 for k=1:t_size
+    if(phi2(k) ~= 2*pi) 
+        disp(k*Ts);
+    end
     
     % *** position analysis ***
     
-    % fsolve solves the non-linear set of equations
+    % fsolve slves the non-linear set of equations
     % loop closure equations: see loop_closure_eqs.m
     % argument loop_closure_eqs: file containing closure equations
     % argument [..]': initial values of unknown angles phi3 and phi4
