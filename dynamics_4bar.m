@@ -7,7 +7,7 @@ function [F_A_x,F_A_y,F_I_x,F_I_y,F_G_x,F_G_y,F_C_x,F_C_y,F_B_x,F_B_y,F_J_x,F_J_
     omega2, omega3, omega4, omega5, omega6, omega7, omega8, omega9, omega10,...
     alpha2, alpha3, alpha4, alpha5, alpha6, alpha7, alpha8,alpha9,alpha10] = ...
 dynamics_4bar(phi2,phi3,phi4,phi5,phi6,phi7,phi8,phi9,phi10,dphi2,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi2,ddphi3,ddphi4,ddphi5,ddphi6,ddphi7,ddphi8,ddphi9,ddphi10,r2,r3,r4,r5,r6,r7,r8,r9a,r9b,r10a,r10b, ...
-  m2,m3,m4,m5,m6,m7,m8,m9,m10,J2,J3,J4,J5,J6,J7,J8,J9,J10,t,fig_dyn_4bar)
+  m2,m3,m4,m5,m6,m7,m8,m9,m10,J2,J3,J4,J5,J6,J7,J8,J9,J10,g,t,fig_dyn_4bar)
 
 
 % a lot of definitions to make the matrix A and B a bit clear.
@@ -304,6 +304,8 @@ for k=1:t_size
       0;
       0;
       0;];
+  
+     
     
     x = A\B;
     
