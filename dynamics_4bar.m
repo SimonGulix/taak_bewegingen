@@ -1,15 +1,4 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Kinematica en werkuigendynamica.
-%
-% Voorbeeldanalyse van een vierstangenmechanisme.
-%
-% Bram Demeulenaere <bram.demeulenaere@mech.kuleuven.be>
-% Maarten De Munck <maarten.demunck@mech.kuleuven.be>
-% Johan Rutgeerts <johan.rutgeerts@mech.kuleuven.be>
-% Wim Meeussen <wim.meeussen@mech.kuleuven.be>
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 
 
 function [F_A_x,F_A_y,F_I_x,F_I_y,F_G_x,F_G_y,F_C_x,F_C_y,F_B_x,F_B_y,F_J_x,F_J_y,F_H_x,F_H_y,F_D9_x,F_D9_y,F_D7_x,F_D7_y,F_D8_x,F_D8_y,F_F10_x,F_F10_y,F_F9_x,F_F9_y,F_F2_x,F_F2_y,F_E4_x,F_E4_y,F_E3_x,F_E3_y,F_E10_x,F_E10_y,M_C,...
