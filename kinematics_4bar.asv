@@ -227,7 +227,6 @@ if fig_kin_4bar
     index = 1; %select 1st timestep
     A = 0;
     C = r12*exp(j*phi12(index));
-    
     F = C + r2*exp(j*phi2(index));
     E1 = A + r3*exp(j*phi3(index));
     E2 = F + r10a * exp(j*phi10(index));
@@ -249,15 +248,15 @@ if fig_kin_4bar
     C2 = B + r13*exp(j*phi13);
     loop5 = [A C C2 B];
     
-   
     
-    
-    
-    
-    
+%     P = 0;
+%     S = r1*exp(j*phi1);
+%     Q = P + r2 * exp(j*phi2(index));
+%     R = Q + r3 * exp(j*phi3(index));
     
     figure
-plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),real(loop4),imag(loop4),real(loop5),imag(loop5),'-o')
+    assembly=[ loop1];
+    plot(real(assembly),imag(assembly),'ro-')
     xlabel('[m]')
     ylabel('[m]')
     title('assembly')
