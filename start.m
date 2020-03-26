@@ -9,9 +9,9 @@ close all
 
 % program data
 fig_kin_4bar = 1;           % draw figures of kinematic analysis if 1
-fig_kin_check = 0;        
-fig_dyn_4bar = 0;        % draw figures of dynamic analysis if 1
-fig_dyn_check = 0;
+fig_kin_check = 1;        
+fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
+fig_dyn_check = 1;
 
 % kinematic parameters (link lengths)
 r11 = 22;
@@ -97,19 +97,19 @@ t = [t_begin:Ts:t_end]';       % time vector
 
 omega = 1;
 A = 1;
-phi2= omega*t;
-dphi2=omega* ones(size(t));
-ddphi2 = zeros(size(t));
+% phi2= omega*t;
+% dphi2=omega* ones(size(t));
+% ddphi2 = zeros(size(t));
 
 thau = t/t_end;
 % phi2 = 10*(3*thau.^2 - 2*thau.^3);
 % dphi2 = 10*(6*thau/t_end - 6*thau.^2 /t_end);
 % ddphi2 = 10*(6/t_end^2 - 12*thau/t_end^2);
 
-% phi2 = 10*(thau - 1/(2*pi) * sin(2*pi*thau));
-% 
-% dphi2 = 10*(1/t_end - (1/t_end * cos(2*pi*thau)));
-% ddphi2 =10*(1/t_end^2 *2*pi* sin(2*pi*thau));
+phi2 = 10*(thau - 1/(2*pi) * sin(2*pi*thau));
+
+dphi2 = 10*(1/t_end - (1/t_end * cos(2*pi*thau)));
+ddphi2 =10*(1/t_end^2 *2*pi* sin(2*pi*thau));
 % calculation of the kinematics (see kin_4bar.m)
 
 [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi3,ddphi4, ddphi5, ddphi6, ddphi7, ddphi8, ddphi9, ddphi10] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2,dphi2,ddphi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar);
