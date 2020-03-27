@@ -1,4 +1,4 @@
-% onze
+
 
 function dyn_check(vel_2x,vel_2y,vel_3x,vel_3y,vel_4x,vel_4y,vel_5x,vel_5y,vel_6x,vel_6y,vel_7x,vel_7y,vel_8x,vel_8y,vel_9x,vel_9y,vel_10x,vel_10y,...
                    acc_2x,acc_2y,acc_3x,acc_3y,acc_4x,acc_4y,acc_5x,acc_5y,acc_6x,acc_6y,acc_7x,acc_7y,acc_8x,acc_8y,acc_9x,acc_9y,acc_10x,acc_10y,...
@@ -7,7 +7,7 @@ function dyn_check(vel_2x,vel_2y,vel_3x,vel_3y,vel_4x,vel_4y,vel_5x,vel_5y,vel_6
 
 
 % variation in kinetic energy of each bar
-dE2 = m2*(vel_2x.*acc_2x+vel_2y.*acc_2y) + J2*omega2(:,3).*alpha2(:,3);
+dE2 = m2*(vel_2x.*acc_2x+vel_2y.*acc_2y) + J2*omega2(:,3).*alpha2(:,3); %want omega/alpha is matrix: kolom 3 = z-as
 dE3 = m3*(vel_3x.*acc_3x+vel_3y.*acc_3y) + J3*omega3(:,3).*alpha3(:,3);
 dE4 = m4*(vel_4x.*acc_4x+vel_4y.*acc_4y) + J4*omega4(:,3).*alpha4(:,3);
 dE5 = m5*(vel_5x.*acc_5x+vel_5y.*acc_5y) + J5*omega5(:,3).*alpha5(:,3);
