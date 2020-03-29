@@ -9,10 +9,10 @@ close all
 
 % program data
 fig_kin_4bar = 1;           % draw figures of kinematic analysis if 1
-fig_kin_check = 1;        
-fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
-fig_dyn_check = 1;
-fig_dyn_check_shaking=1;
+fig_kin_check = 1; 
+fig_dyn_4bar = 0;        % draw figures of dynamic analysis if 1
+fig_dyn_check = 0;
+fig_dyn_check_shaking=0;
 
 % kinematic parameters (link lengths)
 r11 = 2*22*(10)^(-2);

@@ -190,7 +190,7 @@ for m=1:length(index_vec)
     E2 = F + r10a * exp(j*phi10(index));
     
     E_diff= [E_diff sqrt(real(E1-E2)^2 + imag(E1-E2)^2)];
-%     V_E1= (r3*dphi3(index))-
+    V_E1= r3*dphi3(index)
     
     loop1 = [A E1 E2 F C];
     
