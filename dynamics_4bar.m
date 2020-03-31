@@ -106,6 +106,19 @@ DJ_vec = [r7*cos(phi7) r7*sin(phi7) zeros(size(phi2))];
 BD_vec = [r8*cos(phi8) r8*sin(phi8) zeros(size(phi2))];
 GD_vec = [(r9a+r9b)*cos(phi9) (r9a+r9b)*sin(phi9) zeros(size(phi2))];
 HE_vec = [(r10a+r10b)*cos(phi10) (r10a+r10b)*sin(phi10) zeros(size(phi2))];
+EF_vec = [r10a*cos(phi10) r10a*sin(phi10) zeros(size(phi2))];
+GF_vec = [r9b*cos(phi9) r9b*sin(phi9) zeros(size(phi2))];
+HF_vec = [r10b*cos(phi10) r10b*sin(phi10) zeros(size(phi2))];
+DF_vec = [r9a*cos(phi9) r9a*sin(phi9) zeros(size(phi2))];
+
+t_vector=[];
+counter=1;
+time=0;
+while time<(2*pi)
+    t_vector=[t_vector 0.1*counter];
+    counter=counter+1;
+    time=time+0.1;
+end
 
 % acceleration vectors
 acc_2 =       cross(omega2,cross(omega2,C_cog2_vec))+cross(alpha2,C_cog2_vec);
@@ -125,6 +138,37 @@ acc_G =acc_I+cross(omega5,cross(omega5,IG_vec))+cross(alpha5,IG_vec);
 acc_9 =acc_G+cross(omega9,cross(omega9,G_cog9_vec))+cross(alpha9,G_cog9_vec);
 acc_H =acc_J+cross(omega6,cross(omega6,JH_vec))+cross(alpha6,JH_vec);
 acc_10 =acc_H+cross(omega10,cross(omega10,H_cog10_vec))+cross(alpha10,H_cog10_vec);
+
+acc_F1=cross(omega2,cross(omega2,CF_vec))+cross(alpha2,CF_vec);
+acc_F2=acc_E-(cross(omega10,cross(omega10,EF_vec))+cross(alpha10,EF_vec));
+acc_F3=acc_G + cross(omega9,cross(omega9,GF_vec))+cross(alpha9,GF_vec);
+acc_F4= acc_D-(cross(omega9,cross(omega9,DF_vec))+cross(alpha9,DF_vec));
+acc_F5=acc_H +cross(omega10,cross(omega10,HF_vec))+cross(alpha10,HF_vec);
+
+F_acc_diff1= [sqrt((acc_F2(:,1)-(acc_F1(:,1))).^2+(acc_F2(:,2)-(acc_F1(:,2))).^2)];
+F_acc_diff2= [sqrt((acc_F3(:,1)-(acc_F1(:,1))).^2+(acc_F3(:,2)-(acc_F1(:,2))).^2)];
+F_acc_diff3= [sqrt((acc_F4(:,1)-(acc_F1(:,1))).^2+(acc_F4(:,2)-(acc_F1(:,2))).^2)];
+F_acc_diff4= [sqrt((acc_F5(:,1)-(acc_F1(:,1))).^2+(acc_F5(:,2)-(acc_F1(:,2))).^2)];
+
+figure
+plot(t_vector,F_acc_diff1);
+xlabel('t [s]')
+ylabel('F_{acc,diff1} [m/s^2]')
+figure
+plot(t_vector,F_acc_diff2);
+xlabel('t [s]')
+ylabel('F_{acc,diff2} [m/s^2]')
+figure
+plot(t_vector,F_acc_diff3);
+xlabel('t [s]')
+ylabel('F_{acc,diff3} [m/s^2]')
+figure
+plot(t_vector,F_acc_diff4);
+xlabel('t [s]')
+ylabel('F_{acc,diff4} [m/s^2]')
+
+
+
 
 
 acc_2x = acc_2(:,1);
@@ -148,14 +192,42 @@ acc_10y = acc_10(:,2);
 
 % velocity vectors
 
+
+
 vel_E = cross(omega3,AE_vec);
 vel_D = cross(omega8,BD_vec);
-vel_F = cross(omega2,CF_vec);
+vel_F1 = cross(omega2,CF_vec);
 vel_I = vel_E +cross(omega4, EI_vec);
 vel_J = vel_D + cross(omega7, DJ_vec);
 vel_G = vel_I + cross(omega5, IG_vec);
 vel_H = vel_J + cross(omega6, JH_vec);
 
+vel_F2=vel_E-cross(omega10,EF_vec);
+vel_F3=vel_G + cross(omega9,GF_vec);
+vel_F4= vel_D-cross(omega9,DF_vec);
+vel_F5=vel_H +cross(omega10,HF_vec);
+
+F_vel_diff1= [sqrt((vel_F2(:,1)-(vel_F1(:,1))).^2+(vel_F2(:,2)-(vel_F1(:,2))).^2)];
+F_vel_diff2= [sqrt((vel_F3(:,1)-(vel_F1(:,1))).^2+(vel_F3(:,2)-(vel_F1(:,2))).^2)];
+F_vel_diff3= [sqrt((vel_F4(:,1)-(vel_F1(:,1))).^2+(vel_F4(:,2)-(vel_F1(:,2))).^2)];
+F_vel_diff4= [sqrt((vel_F5(:,1)-(vel_F1(:,1))).^2+(vel_F5(:,2)-(vel_F1(:,2))).^2)];
+
+figure
+plot(t_vector,F_vel_diff1);
+xlabel('t [s]')
+ylabel('F_{vel,diff1} [m/s]')
+figure
+plot(t_vector,F_vel_diff2);
+xlabel('t [s]')
+ylabel('F_{vel,diff2} [m/s]')
+figure
+plot(t_vector,F_vel_diff3);
+xlabel('t [s]')
+ylabel('F_{vel,diff3} [m/s]')
+figure
+plot(t_vector,F_vel_diff4);
+xlabel('t [s]')
+ylabel('F_{vel,diff4} [m/s]')
 
 vel_2 = cross(omega2,C_cog2_vec);
 vel_3 = cross(omega3,A_cog3_vec);

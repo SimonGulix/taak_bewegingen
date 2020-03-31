@@ -182,34 +182,46 @@ axis equal;
 movie_axes = axis;   %save current axes into movie_axes
 
 % draw and save movie frame
-E_diff=[];
+F_diff1=[];
+F_diff2=[];
+F_diff3=[];
+F_diff4=[];
 for m=1:length(index_vec)  
     index = index_vec(m);
-    F = C + r2*exp(j*phi2(index));
+    F1 = C + r2*exp(j*phi2(index));
     E1 = A + r3*exp(j*phi3(index));
-    E2 = F + r10a * exp(j*phi10(index));
+    E2 = F1 + r10a * exp(j*phi10(index));
     
-    E_diff= [E_diff sqrt(real(E1-E2)^2 + imag(E1-E2)^2)];
+%     E_diff= [E_diff sqrt(real(E1-E2)^2 + imag(E1-E2)^2)];
 %     V_E1= (r3*dphi3(index))-
     
-    loop1 = [A E1 E2 F C];
+    loop1 = [A E1 E2 F1 C];
     
     I = E1 + r4*exp(j*phi4(index));
     G = I + r5*exp(j*phi5(index));
-    loop2 = [E1 I G F ];
+    loop2 = [E1 I G F1 ];
     
     B = A + r11 * exp(j*0);
     D = B + r8*exp(j*phi8(index));
-    loop3 = [B D F C ];
+    loop3 = [B D F1 C ];
     
     J = D + r7*exp(j*phi7(index));
     H = J + r6*exp(j*phi6(index));
-    loop4 = [D J H F];
+    loop4 = [D J H F1];
     
     C2 = B + r13*exp(j*phi13);
     loop5 = [A C C2 B];
     
+    F2= E1 - r10a*exp(j*phi10(index));
+    F3= G + r9b*exp(j*phi9(index));
+    F4= D - r9a*exp(j*phi9(index));
+    F5= H+ r10b*exp(j*phi10(index));
     
+    F_diff1= [F_diff1 sqrt(real(F1-F2)^2 + imag(F1-F2)^2)];
+    F_diff2= [F_diff2 sqrt(real(F1-F3)^2 + imag(F1-F3)^2)];
+    F_diff3= [F_diff3 sqrt(real(F1-F4)^2 + imag(F1-F4)^2)];
+    F_diff4= [F_diff4 sqrt(real(F1-F5)^2 + imag(F1-F5)^2)];
+   
     figure(10)
     clf
     hold on
@@ -269,9 +281,25 @@ plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),rea
     axis equal
     
     figure
-    plot(t,E_diff);
+    subplot(331)
+    plot(t,F_diff1);
     xlabel('t [s]')
-    ylabel('E_{diff} [rad]')
+    ylabel('F_{diff,1} [rad]')
+    subplot(332)
+    plot(t,F_diff2);
+    xlabel('t [s]')
+    ylabel('F_{diff,2} [rad]')
+    subplot(333)
+    plot(t,F_diff3);
+    xlabel('t [s]')
+    ylabel('F_{diff,3} [rad]')
+    
+    figure
+    plot(t,F_diff4);
+    xlabel('t [s]')
+    ylabel('F_{diff,4} [rad]')
+
+    
     %%Position
     figure
     subplot(331)

@@ -10,9 +10,9 @@ close all
 % program data
 fig_kin_4bar = 1;           % draw figures of kinematic analysis if 1
 fig_kin_check = 1; 
-fig_dyn_4bar = 0;        % draw figures of dynamic analysis if 1
-fig_dyn_check = 0;
-fig_dyn_check_shaking=0;
+fig_dyn_4bar = 1;        % draw figures of dynamic analysis if 1
+fig_dyn_check = 1;
+fig_dyn_check_shaking=1;
 
 % kinematic parameters (link lengths)
 r11 = 2*22*(10)^(-2);
@@ -41,18 +41,19 @@ phi13 = convert_radial(216.0273734);
 phi11 = 0;
 
 density=8000; %kg/m3
-m11 = r11*density*(10)^(-4); %beams with Asurf= 1 cm2
-m12 = r12*density*(10)^(-4);
-m13 = r13*density*(10)^(-4);
-m2 = r2*density*(10)^(-4);
-m3 = r3*density*(10)^(-4);
-m4 = r4*density*(10)^(-4);
-m5 = r5*density*(10)^(-4);
-m6 = r6*density*(10)^(-4);
-m7 = r7*density*(10)^(-4);
-m8 = r8*density*(10)^(-4);
-m9 = (r9a+r9b)*density*(10)^(-4);
-m10 = (r10a+r10b)*density*(10)^(-4);
+Asurf=(pi/4)*0.03^2; %3cm diameter
+m11 = r11*density*Asurf; 
+m12 = r12*density*Asurf;
+m13 = r13*density*Asurf;
+m2 = r2*density*Asurf;
+m3 = r3*density*Asurf;
+m4 = r4*density*Asurf;
+m5 = r5*density*Asurf;
+m6 = r6*density*Asurf;
+m7 = r7*density*Asurf;
+m8 = r8*density*Asurf;
+m9 = (r9a+r9b)*density*Asurf;
+m10 = (r10a+r10b)*density*Asurf;
 
 
 J2 = m2*r2^2/12;
