@@ -2,8 +2,6 @@
 
 function [phi3,phi4,phi5, phi6, phi7, phi8,phi9,phi10,dphi3,dphi4,dphi5,dphi6,dphi7,dphi8,dphi9,dphi10,ddphi3,ddphi4,ddphi5,ddphi6,ddphi7,ddphi8,ddphi9,ddphi10] = kinematics_4bar(r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2,dphi2, ddphi2, phi3_init, phi4_init, phi5_init, phi6_init, phi7_init, phi8_init, phi9_init, phi10_init,t,fig_kin_4bar)
 
-% allocation of the result vectors (this results in better performance because we don't have to reallocate and
-% copy the vector each time we add an element.
 phi3 = zeros(size(t));
 phi4 = zeros(size(t));
 phi5 = zeros(size(t));
@@ -31,20 +29,12 @@ ddphi8 = zeros(size(t));
 ddphi9 = zeros(size(t));
 ddphi10 = zeros(size(t));
 
-% fsolve options (help fsolve, help optimset)
-% optim_options = optimset('Display','off');
-optim_options = optimset('Display','off','TolFun',10^-12);
-% *** loop over positions ***
+
+optim_options = optimset('Display','off','TolFun',10^-12); %manually chosen accurateness
 Ts = t(2) - t(1);      % timestep
 t_size = size(t,1);    % number of simulation steps
 for k=1:t_size
     
-    
-%     if(phi2(k) ~= 2*pi) 
-%         disp(k*Ts);
-%     end
-    
-
 
     % *** position analysis ***
     
@@ -109,8 +99,6 @@ for k=1:t_size
     
     % *** acceleration analysis ***
    
-
-    %%AANGEPAST, FOUT OKE NU
     A=[-r3*sin(phi3(k)),-r4*sin(phi4(k)),-r5*sin(phi5(k)),0,0,r8*sin(phi8(k)),-(r9a+r9b)*sin(phi9(k)),0;
     r3*cos(phi3(k)),r4*cos(phi4(k)),r5*cos(phi5(k)),0,0,-r8*cos(phi8(k)),(r9a+r9b)*cos(phi9(k)),0;
     r3*sin(phi3(k)),0,0,-r6*sin(phi6(k)),-r7*sin(phi7(k)),-r8*sin(phi8(k)),0,-(r10a+r10b)*sin(phi10(k));
@@ -150,7 +138,7 @@ for k=1:t_size
     phi9_init = phi9(k)+Ts*dphi9(k);
     phi10_init = phi10(k)+Ts*dphi10(k);
 
-end % loop over positions
+end 
 
 
 
@@ -191,9 +179,6 @@ for m=1:length(index_vec)
     F1 = C + r2*exp(j*phi2(index));
     E1 = A + r3*exp(j*phi3(index));
     E2 = F1 + r10a * exp(j*phi10(index));
-    
-%     E_diff= [E_diff sqrt(real(E1-E2)^2 + imag(E1-E2)^2)];
-%     V_E1= (r3*dphi3(index))-
     
     loop1 = [A E1 E2 F1 C];
     
@@ -266,13 +251,6 @@ if fig_kin_4bar
     C2 = B + r13*exp(j*phi13);
     loop5 = [A C C2 B];
     
-   
-    
-    
-    
-    
-    
-    
     figure
 plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),real(loop4),imag(loop4),real(loop5),imag(loop5),'-o')
     xlabel('[m]')
@@ -280,6 +258,7 @@ plot(real(loop1),imag(loop1),real(loop2),imag(loop2),real(loop3),imag(loop3),rea
     title('assembly')
     axis equal
     
+    %Error plots
     figure
     subplot(331)
     plot(t,F_diff1);

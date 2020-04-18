@@ -3,9 +3,7 @@
 
 function F=loop_closure_eqs(phi_init, r11, r12, r13,r2,r3,r4,r5,r6,r7,r8,r9a, r9b,r10a, r10b, phi11, phi12, phi13,phi2) 
 
-% first argument: the initial values of the unknown angles phi3 and phi4
-% argument phi2: input angle phi2 for which we want to calculate the unknown angles phi3 and phi4
-% arguments a1 ... phi1: constants
+
 
 % copy initial values of unknown angles phi3 and phi4
 phi3 = phi_init(1);
